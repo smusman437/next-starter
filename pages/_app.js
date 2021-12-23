@@ -1,17 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
-import Navbar from "../component/Navbar";
+import Layout from "../component/Layout";
 
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     require("../node_modules/bootstrap/dist/js/bootstrap.js");
   }, []);
   return (
-    <>
-      <Navbar />
+    <Layout>
       <Component {...pageProps} />
-    </>
+    </Layout>
   );
 }
 
