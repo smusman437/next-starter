@@ -39,7 +39,7 @@ export default function Home(props) {
         </thead>
         <tbody>
           {posts.map((x) => (
-            <tr>
+            <tr key={x.id}>
               <th scope="row">{x.id}</th>
               <td>{x.title}</td>
               <td>{x.completed ? "Completed" : "Not Completed"}</td>
