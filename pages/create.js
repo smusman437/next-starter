@@ -45,7 +45,7 @@ const Create = () => {
                 <p className="card-text">
                   <form>
                     <div className="mb-3">
-                      <label for="exampleInput2" className="form-label">
+                      <label htmlFor="exampleInput2" className="form-label">
                         Id
                       </label>
                       <input
@@ -58,7 +58,7 @@ const Create = () => {
                       />
                     </div>
                     <div className="mb-3">
-                      <label for="exampleInput1" className="form-label">
+                      <label htmlFor="exampleInput1" className="form-label">
                         Title
                       </label>
                       <input
@@ -84,7 +84,7 @@ const Create = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="exampleCheck1"
+                            htmlFor="exampleCheck1"
                           >
                             Completed
                           </label>
