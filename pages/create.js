@@ -25,7 +25,7 @@ const Create = () => {
   };
 
   const handleSubmit = () => {
-    console.log("post: for create", post);
+    console.log("post", post);
   };
 
   return (
