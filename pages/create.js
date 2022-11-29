@@ -39,7 +39,7 @@ const Create = () => {
       <div className="container">
         <div className="row">
           <div className="col d-flex justify-content-center mt-4">
-            <div className="card text-center" style={{ width: "30rem" }}>
+            <div className="card text-center bg-info" style={{ width: "30rem" }}>
               <div className="card-body">
                 <h5 className="card-title">Create New Todo</h5>
                 <p className="card-text">
