@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { TODO_URL } from "../../constant";
 import styles from "../../styles/Home.module.css";
 
 const Details = (props) => {
@@ -17,7 +18,8 @@ const Details = (props) => {
                 <h5 className="card-title">ID: {props.post.id}</h5>
                 <p className="card-text">TITLE: {props.post.title}</p>
                 <p className="card-text">
-                  STATUS: {props.post.completed ? "Completed" : "Not Completed"}
+                  STATUS:{" "}
+                  {props.post.isComplete ? "Completed" : "Not Completed"}
                 </p>
                 <a href="#" className="btn btn-primary">
                   Go somewhere
@@ -32,13 +34,9 @@ const Details = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-  console.log("params:", params);
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${params.id}`
-  );
+  const res = await fetch(`${TODO_URL}/${params.id}`, { Method: "GET" });
 
   const post = await res.json();
-  console.log("post:", post);
   if (res.status !== 200) {
     return {
       notFound: true,
