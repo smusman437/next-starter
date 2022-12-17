@@ -1,13 +1,13 @@
 import Head from "next/head";
 import { useState } from "react";
+import { TODO_URL } from "../constant";
 import styles from "../styles/Home.module.css";
+import Router from "next/router";
 
 const Create = () => {
   const [post, setPost] = useState({
-    id: "",
     title: "",
-    completed: "",
-    userId: 1,
+    isComplete: "",
   });
 
   const handleChange = (e) => {
@@ -24,8 +24,16 @@ const Create = () => {
     }
   };
 
-  const handleSubmit = () => {
-    console.log("post", post);
+  const handleSubmit = async () => {
+    const res = await fetch(TODO_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    });
+    Router.push("/");
   };
 
   return (
@@ -39,24 +47,14 @@ const Create = () => {
       <div className="container">
         <div className="row">
           <div className="col d-flex justify-content-center mt-4">
-            <div className="card text-center bg-info" style={{ width: "30rem" }}>
+            <div
+              className="card text-center bg-info"
+              style={{ width: "30rem" }}
+            >
               <div className="card-body">
                 <h5 className="card-title">Create New Todo</h5>
                 <p className="card-text">
                   <form>
-                    <div className="mb-3">
-                      <label htmlFor="exampleInput2" className="form-label">
-                        Id
-                      </label>
-                      <input
-                        type="input"
-                        name="id"
-                        value={post.id}
-                        onChange={(e) => handleChange(e)}
-                        className="form-control"
-                        id="exampleInput2"
-                      />
-                    </div>
                     <div className="mb-3">
                       <label htmlFor="exampleInput1" className="form-label">
                         Title
@@ -75,8 +73,8 @@ const Create = () => {
                       <div className="col d-flex justify-content-center">
                         <div className="mb-3 form-check">
                           <input
-                            name="completed"
-                            checked={post.completed}
+                            name="isComplete"
+                            checked={post.isComplete}
                             type="checkbox"
                             onChange={(e) => handleChange(e)}
                             className="form-check-input"
@@ -86,7 +84,7 @@ const Create = () => {
                             className="form-check-label"
                             htmlFor="exampleCheck1"
                           >
-                            Completed
+                            isComplete
                           </label>
                         </div>
                       </div>
