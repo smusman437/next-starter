@@ -2,17 +2,13 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import { TODO_URL } from "../constant";
 
 export default function Home(props) {
   const [posts, setPost] = useState(props.data);
   const handleDelete = async (id) => {
     console.log("id:", id);
-    const res = await fetch(
-      `https://jsonplaceholder.typicode.com/todos/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const res = await fetch(`${TODO_URL}/${id}`, { Method: "DELETE" });
     if (res.status === 200) {
       const data = posts.filter((post) => post.id !== id);
       setPost(() => data);
@@ -42,7 +38,7 @@ export default function Home(props) {
             <tr key={x.id}>
               <th scope="row">{x.id}</th>
               <td>{x.title}</td>
-              <td>{x.completed ? "Completed" : "Not Completed"}</td>
+              <td>{x.isComplete ? "Completed" : "Not Completed"}</td>
               <td>
                 <button
                   type="button"
@@ -71,7 +67,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/todos`);
+  const res = await fetch(TODO_URL, { Method: "GET" });
   const data = await res.json();
 
   if (!data) {
