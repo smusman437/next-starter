@@ -48,7 +48,7 @@ const Create = () => {
         <div className="row">
           <div className="col d-flex justify-content-center mt-4">
             <div
-              className="card text-center bg-info"
+              className="card text-center shadow-lg p-3 mb-5 bg-white rounded"
               style={{ width: "30rem" }}
             >
               <div className="card-body">
