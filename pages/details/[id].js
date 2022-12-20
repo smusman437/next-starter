@@ -34,7 +34,7 @@ const Details = (props) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`${TODO_URL}/${params.id}`, { Method: "GET" });
+  const res = await fetch(`${TODO_URL}/${params.id}`, { method: "GET" });
 
   const post = await res.json();
   if (res.status !== 200) {
