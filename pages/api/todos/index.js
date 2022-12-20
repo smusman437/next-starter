@@ -10,8 +10,10 @@ export default async function handler(req, res) {
       await db.end();
       return res.status(200).send(data);
     case "POST":
-      const { title, isComplete } = req.body;
-
+      let { title, isComplete } = req.body;
+      if (!isComplete) {
+        isComplete = false;
+      }
       await db.connect();
       var sql = `INSERT INTO todo (title,isComplete) VALUES ('${title}',${isComplete})`;
       await db.query(sql);
